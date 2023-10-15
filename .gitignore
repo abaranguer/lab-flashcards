@@ -1,0 +1,7 @@
+.git/
+.settings/
+.cproject
+.project
+token-github
+/Debug/
+/Release/
