@@ -3,3 +3,9 @@
 .cproject
 .project
 token-github
+Debug/src/*.d
+Debug/src/*.o
+Debug/lab-flashcards
+Release/src/*.d
+Release/src/*.o
+Release/lab-flashcards
