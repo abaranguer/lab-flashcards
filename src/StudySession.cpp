@@ -90,30 +90,26 @@ void StudySession::showStudyFileStatus()
 
     if (hasOne)
     {
-        if (numOptions == 1)
-        {
-            boxIdChoosed = options.at(0).boxId;
-            topicIdChoosed = options.at(0).topicId;
-            cout    << "\nSeleccionada caixa " << boxIdChoosed
-                    << " i topic '" << options.at(0).topic << "'" << endl;
-        }
-        else
-        {
-            string option;
-            do
-            {
-                cout << "\n(1 - " << numOptions << ") Triar caixa inicial i Topic ";
-                cin >> option;
-            } while(!validateNumOption(option, numOptions));
+    	numOptions++;
+        cout    << "\n(" << numOptions << ") - Tornar al menú anterior." << endl;
+		string option;
+		do
+		{
+			cout << "\n(1 - " << numOptions << ") Triar caixa inicial i Topic " << endl;
+			cin >> option;
+		} while(!validateNumOption(option, numOptions));
 
-            int index = toNumber(option) - 1;
-            boxIdChoosed = options.at(index).boxId;
-            topicIdChoosed = options.at(index).topicId;
-            cout    << "\nSeleccionada caixa " << boxIdChoosed
-                    << " i topic '" << options.at(index).topic << "'" << endl;
-        }
+		int index = toNumber(option);
+		if (index != numOptions)
+		{
+			index = index - 1;
+			boxIdChoosed = options.at(index).boxId;
+			topicIdChoosed = options.at(index).topicId;
+			cout    << "\nSeleccionada caixa " << boxIdChoosed
+					<< " i topic '" << options.at(index).topic << "'" << endl;
 
-        startSession(boxIdChoosed, topicIdChoosed);
+			startSession(boxIdChoosed, topicIdChoosed);
+		}
     }
     else
     {
