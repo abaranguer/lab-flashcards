@@ -172,8 +172,17 @@ void Recommender::lookForBoxWithCards()
             boxId = studyFileStatus->at(i).boxId;
             if (topicId == topic.id)
             {
-                cout << "\n\nEs recomana seguir amb la caixa "
-                    << boxId << endl;
+            	if (boxId != BOX_1_ID)
+            	{
+            		cout << "\n\nEs recomana: " << endl;
+            		cout << "    Afegir noves targetes a la primera caixa." << endl;
+            		cout << "    O bé, continuar amb la caixa " << boxId << "." <<endl;
+            	}
+            	else
+            	{
+            		cout << "\n\nEs recomana continuar amb la primera caixa." << endl;
+            	}
+
                 break;
             }
         }
