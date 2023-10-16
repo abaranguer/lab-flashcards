@@ -27,6 +27,7 @@ private:
     void showMainMenu();
     void selectMainMenuOption();
     void doMenuOption();
+    void backToMenu(string prompt);
 };
 
 #endif // APP_H

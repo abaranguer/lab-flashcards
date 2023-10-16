@@ -9,3 +9,5 @@ Debug/lab-flashcards
 Release/src/*.d
 Release/src/*.o
 Release/lab-flashcards
+/Debug/
+/Release/

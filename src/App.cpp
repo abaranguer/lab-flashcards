@@ -27,18 +27,21 @@ void App::showMainMenu()
     cout << BOLD << "(2) Crear targetes." << RESET << endl;
     cout << BOLD << "(3) Carregar targetes al fitxer d'estudi." << RESET << endl;
     cout << BOLD << "(4) Sessió d'estudi." << RESET << endl;
-    cout << BOLD << "(5) Sortir." << RESET << endl;
+    cout << BOLD << "(5) Estat actual del fitxer d'estudi." << RESET << endl;
+    cout << BOLD << "(6) Versió." << RESET << endl;
+    cout << BOLD << "(7) Sortir." << RESET << endl;
 }
 
 void App::selectMainMenuOption()
 {
     do
     {
-        cout << "\n(1 - 5) ";
+        cout << "\n(1 - 7) ";
         cin >> mainMenuOption;
     } while ((mainMenuOption != "1") && (mainMenuOption != "2") &&
              (mainMenuOption != "3") && (mainMenuOption != "4") &&
-             (mainMenuOption != "5"));
+             (mainMenuOption != "5") && (mainMenuOption != "6") &&
+			 (mainMenuOption != "7"));
 }
 
 void App::doMenuOption()
@@ -71,8 +74,41 @@ void App::doMenuOption()
 
     if (mainMenuOption == "5")
     {
+        StudySession ss;
+        ss.showStudyFileInfo(conn);
+        cout << "\n\n";
+        backToMenu("Tornar al menú.");
+    }
+
+    if (mainMenuOption == "6")
+    {
+    	const char *buildString = "This build was compiled at '" __DATE__ "-" __TIME__ "'.";
+
+        cout << CLRSCR;
+        cout << "\n\n" << endl;
+        cout << BOLD << "Fitxer d'Estudi" << RESET << endl;
+        cout << buildString << endl;
+        cout << "per Albert Baranguer i Codina" << endl;
+        cout << "Barcelona 2023" << endl;
+        cout << "Catalunya\n\n" << endl;
+
+        backToMenu("Tornar al menú.");
+    }
+
+    if (mainMenuOption == "7")
+    {
         cout << CLRSCR;
         cout << "Passi-ho bé i fins a la propera." << endl;
         exit(0);
     }
+}
+
+void App::backToMenu(string prompt)
+{
+    string dummy;
+    do
+    {
+        cout << "(0) - " << prompt << endl;
+        cin >> dummy;
+    } while (dummy != "0");
 }

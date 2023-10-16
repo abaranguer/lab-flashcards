@@ -18,8 +18,10 @@ using namespace std;
 class StudySession
 {
     public:
+		StudySession(void);
         StudySession(sqlite3 *conn);
         virtual ~StudySession();
+        void showStudyFileInfo(sqlite3 *conn);
 
     private:
         vector<StudyFileStatusEntity> *studyFileStatus;

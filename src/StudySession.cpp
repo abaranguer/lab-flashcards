@@ -2,6 +2,11 @@
 
 using namespace std;
 
+StudySession::StudySession()
+{
+	// ctor
+}
+
 StudySession::StudySession(sqlite3* conn)
 {
     int sizes[] = {20, 40, 60, 140, 300};
@@ -114,6 +119,50 @@ void StudySession::showStudyFileStatus()
     else
     {
         cout << "\nNO HI HAN TARGETES AL FITXER d'ESTUDI" << endl;
+    }
+}
+
+void StudySession::showStudyFileInfo(sqlite3 *conn)
+{
+    cout << CLRSCR;
+    cout << "\n\n" << BOLD << "Estat actual del fitxer d'estudi\n\n" << RESET << endl;
+
+    StudyFileStatusDAO sfsdao;
+    studyFileStatus = sfsdao.getStudyFileStatus(conn);
+    int numElems = studyFileStatus->size();
+
+    int numCards = 0;
+    int boxId;
+    string topic;
+
+    int i;
+    for(i = 0; i < numElems; i++)
+    {
+        if ((studyFileStatus->at(i).boxId != 0) && (studyFileStatus->at(i).boxId != 6))
+        {
+            numCards = studyFileStatus->at(i).numCards;
+            topic = studyFileStatus->at(i).topic;
+            boxId = studyFileStatus->at(i).boxId;
+            if (numCards > 1)
+            {
+                cout    << "- A la caixa " << boxId
+                        << " hi han " << numCards << " targetes del topic '"
+                        << topic << "'" << endl;
+            } else {
+                cout    << "- A la caixa " << boxId
+                        << " hi ha " << numCards << " targeta del topic '"
+                        << topic << "'" << endl;
+            }
+        }
+    }
+
+    if (numElems == 0)
+    {
+        cout << "NO HI HAN TARGETES AL FITXER d'ESTUDI.\n\n" << endl;
+    }
+    else
+    {
+    	cout << "\n\n" << endl;
     }
 }
 
